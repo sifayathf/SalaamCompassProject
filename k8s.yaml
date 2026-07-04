@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: salaam-backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: salaam-backend
+  template:
+    metadata:
+      labels:
+        app: salaam-backend
+    spec:
+      containers:
+      - name: backend
+        image: salaam-backend:latest
+        ports:
+        - containerPort: 8000
+        env:
+        - name: DATABASE_URL
+          valueFrom:
+            secretKeyRef:
+              name: db-secret
+              key: url
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: salaam-backend-svc
+spec:
+  selector:
+    app: salaam-backend
+  ports:
+  - port: 8000
+    targetPort: 8000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: salaam-frontend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: salaam-frontend
+  template:
+    metadata:
+      labels:
+        app: salaam-frontend
+    spec:
+      containers:
+      - name: frontend
+        image: salaam-frontend:latest
+        ports:
+        - containerPort: 5173
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: salaam-frontend-svc
+spec:
+  selector:
+    app: salaam-frontend
+  ports:
+  - port: 80
+    targetPort: 5173
+    type: LoadBalancer
