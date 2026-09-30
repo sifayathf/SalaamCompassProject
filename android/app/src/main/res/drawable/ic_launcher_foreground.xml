@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Compass ring -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FFFFFF"
+        android:strokeWidth="3"
+        android:pathData="M54,30 A24,24 0 1,1 53.99,30 Z" />
+    <!-- Needle pointing up -->
+    <path
+        android:fillColor="#E8C547"
+        android:pathData="M54,33 L60,54 L48,54 Z" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,75 L60,54 L48,54 Z" />
+    <!-- Kaaba -->
+    <path
+        android:fillColor="#111111"
+        android:pathData="M49,22 L59,22 L59,30 L49,30 Z" />
+    <path
+        android:fillColor="#E8C547"
+        android:pathData="M49,24 L59,24 L59,25.5 L49,25.5 Z" />
+</vector>
