@@ -38,3 +38,10 @@ jobs:
         with:
           name: salaam-compass-screenshots
           path: screenshots/
+      # Lets tools that can read job logs but not download artifacts view the screenshots.
+      - name: Print screenshots as base64
+        if: always()
+        run: |
+          for f in screenshots/*.png; do
+            echo "BEGIN-PNG $(basename "$f")"; base64 -w 76 "$f"; echo "END-PNG"
+          done
